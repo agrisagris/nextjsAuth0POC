@@ -1,9 +1,9 @@
-import { Provider } from "next-auth/client";
+import Auth0ProviderWithHistory from "../src/auth/auth0-provider-with-history";
 
 export default function App({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
+    <Auth0ProviderWithHistory>
       <Component {...pageProps} />
-    </Provider>
+    </Auth0ProviderWithHistory>
   );
 }

@@ -8,9 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.5.0",
     "next": "10.2.0",
     "next-auth": "^3.19.8",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-router-dom": "^5.2.0"
   }
 }

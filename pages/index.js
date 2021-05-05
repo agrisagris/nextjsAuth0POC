@@ -1,22 +1,35 @@
-import { signIn, signOut, useSession } from "next-auth/client";
+import { useAuth0 } from "@auth0/auth0-react";
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+  return (
+    <button
+      className="btn btn-primary btn-block"
+      onClick={() => loginWithRedirect()}
+    >
+      Log In
+    </button>
+  );
+};
+
+const LogoutButton = () => {
+  const { logout } = useAuth0();
+  return (
+    <button
+      className="btn btn-danger btn-block"
+      onClick={() =>
+        logout({
+          returnTo: window.location.origin,
+        })
+      }
+    >
+      Log Out
+    </button>
+  );
+};
 
 export default function Page() {
-  const [session, loading] = useSession();
+  const { isAuthenticated } = useAuth0();
 
-  return (
-    <>
-      {!session && (
-        <>
-          Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </>
-      )}
-      {session && (
-        <>
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
-      )}
-    </>
-  );
+  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 }
